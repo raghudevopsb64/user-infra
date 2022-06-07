@@ -17,6 +17,9 @@ module "elasticache" {
   COMPONENT      = var.COMPONENT
   NODE_COUNT     = var.EC_NODE_COUNT
   FAMILY         = var.EC_FAMILY
+  VPC_ID         = module.vpc.VPC_ID
+  VPC_CIDR       = module.vpc.VPC_CIDR
+  SUBNET_IDS     = module.vpc.SUBNET_IDS
 }
 
 module "documentdb" {
@@ -30,5 +33,8 @@ module "documentdb" {
   NODE_COUNT          = var.DOCDB_NODE_COUNT
   FAMILY              = var.DOCDB_FAMILY
   SKIP_FINAL_SNAPSHOT = var.DOCDB_SKIP_FINAL_SNAPSHOT
+  VPC_ID              = module.vpc.VPC_ID
+  VPC_CIDR            = module.vpc.VPC_CIDR
+  SUBNET_IDS          = module.vpc.SUBNET_IDS
 }
 
