@@ -14,7 +14,3 @@
 //  value = module.vpc.SUBNET_CIDR
 //}
 //
-
-output "redis" {
-  value = module.elasticache.redis
-}
