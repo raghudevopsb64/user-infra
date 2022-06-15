@@ -8,18 +8,19 @@ module "vpc" {
 }
 
 module "elasticache" {
-  depends_on     = [module.vpc]
-  source         = "git::https://github.com/raghudevopsb64/tf-module-elasticache-redis.git"
-  ENGINE         = var.EC_ENGINE
-  ENGINE_VERSION = var.EC_ENGINE_VERSION
-  NODE_TYPE      = var.EC_NODE_TYPE
-  ENV            = var.ENV
-  COMPONENT      = var.COMPONENT
-  NODE_COUNT     = var.EC_NODE_COUNT
-  FAMILY         = var.EC_FAMILY
-  VPC_ID         = module.vpc.VPC_ID
-  VPC_CIDR       = module.vpc.VPC_CIDR
-  SUBNET_IDS     = module.vpc.SUBNET_IDS
+  depends_on             = [module.vpc]
+  source                 = "git::https://github.com/raghudevopsb64/tf-module-elasticache-redis.git"
+  ENGINE                 = var.EC_ENGINE
+  ENGINE_VERSION         = var.EC_ENGINE_VERSION
+  NODE_TYPE              = var.EC_NODE_TYPE
+  ENV                    = var.ENV
+  COMPONENT              = var.COMPONENT
+  NODE_COUNT             = var.EC_NODE_COUNT
+  FAMILY                 = var.EC_FAMILY
+  VPC_ID                 = module.vpc.VPC_ID
+  VPC_CIDR               = module.vpc.VPC_CIDR
+  SUBNET_IDS             = module.vpc.SUBNET_IDS
+  PRIVATE_HOSTED_ZONE_ID = module.vpc.PRIVATE_HOSTED_ZONE_ID
 }
 
 module "documentdb" {
@@ -54,6 +55,7 @@ module "app" {
   VPC_ACCESS_TO_ALB       = [module.vpc.VPC_CIDR]
   DOCDB_ENDPOINT          = module.documentdb.DOCDB_ENDPOINT
   IAM_POLICY_CREATE       = true
+  PRIVATE_HOSTED_ZONE_ID  = module.vpc.PRIVATE_HOSTED_ZONE_ID
 }
 
 
