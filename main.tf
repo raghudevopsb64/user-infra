@@ -52,6 +52,8 @@ module "app" {
   PORT                    = var.PORT
   WORKSTATION_IP          = var.WORKSTATION_IP
   VPC_ACCESS_TO_ALB       = [module.vpc.VPC_CIDR]
+  DOCDB_ENDPOINT          = module.documentdb.DOCDB_ENDPOINT
+  IAM_POLICY_CREATE       = true
 }
 
 
