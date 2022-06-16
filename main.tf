@@ -38,6 +38,7 @@ module "documentdb" {
   VPC_CIDR            = module.vpc.VPC_CIDR
   SUBNET_IDS          = module.vpc.SUBNET_IDS
   WORKSTATION_IP      = var.WORKSTATION_IP
+  DB_NAME             = "users"
 }
 
 module "app" {
